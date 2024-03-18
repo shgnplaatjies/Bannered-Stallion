@@ -35,3 +35,4 @@ Thumbs.db
 docs/Draft/
 src/models/run.js
 src/models/output.txt
+dist.zip
