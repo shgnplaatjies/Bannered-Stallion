@@ -22,64 +22,64 @@ A RESTful API for a multi-vendor restaurant.
 
 ## Overview
 
-Welcome to 'The Dancing Pony' - a culinary journey through the heart of Middle Earth. Envisioned by Frogo Baggins, this cozy multi-vendor restuarant complex aims to bring Middle Earthean dishes to life.
+Welcome to 'The Bannered Stallion' - a RESTful API for a multi-vendor restaurant inspired, in name and spirit, by the world-renowned taverns - The Bannered Mare of Skyrim and The Prancing Pony of Middle Earth.
 
-This API has it all! From robust federated authentication - through to a well-designed database. Every decision aims to create a seamless and secure space for both restuarant managers and customers, and of course for Frogo Baggins himself.
+This API includes robust federated identity management using Auth2.0, a well-designed, normalized database, security protections against cross-site request forgery, script injection and man-in-the-middle attacks. Every decision in this project aims to showcase my expression of a seamless production-focused backend software project, some considerations include the design of the software and infrastructure as a service layer, systems and functional layer, cybersecurity posture, developer experience, continuous integration, and adaptability, compliance and scalability considerations. The API serves to facilitate all viable multi-vendor user stories for network administrators, restaurant managers, and customers as end-users.
 
 ## Architecture Decisions
 
-The significant architectural decisions made during the project.
+Some significant architectural decisions were made during the project.
 
 ### [Tech Stack Selection]
 
-- **Decision:** Decided on TypeORM, MySQL, Node.js, Express.js, and SwaggerUI for the development.
-- **Context:** I picked these as I believe they fit well in the specifications of the project requirements while facilitating a streamlined dev process.
-- **Alternatives Considered:** I compared Laravel, Spring Boot, and Express.js. Ultimately, I chose Express.js for it's familiarity, community support, and ✨TypeScript✨.
-- **Consequences:** Streamlined development, improved security awareness during the dev process with well-supported libraries like Sonar, RedHat and npm audit.
-- **Challenges** Minimal prior expreience with ORMs, OAuth 2.0 and Swagger.
+- **Decision:** Decided on a TypeScript foundation, MySQL with TypeORM, Node.js, Express.js, and SwaggerUI documentation.
+- **Context:** These fit well to facilitate robust, production-ready product and scaling needs.
+- **Alternatives Considered:** I compared PHP's Laravel for it's speed, but decided against it because of its less-intuitive nature leading to a smaller available talent pool, Spring Boot was the strongest option as it's robust, fast and simple to use but ultimately, I chose Express.js for the familiarity, large talent pool with community support, and TypeScript support.
+- **Consequences:** Streamlined development, and improved security posture throughout the development process with well-supported libraries like Sonar, RedHat and NPM's Audit.
+- **Challenges** Minimal prior experience with ORMs, OAuth 2.0 with Microsoft, ultimately learned a lot and enjoyed the process.
 
 ### [Security Measures]
 
-- **Decision:** Implemented security measures like environment variables and following Red Hat, Sonar, and network security practices.
-- **Context:** Security is a top priority. Protecting of Personal Information and ensuring compliance with industry standards is vital in the modern age.
-- **Alternatives Considered:** Explored various security practices, including encryption for cookies, HTTPS, encryption algorithms, multi-factor authentication, and continuous monitoring. I've chosen to implement measures incrementally based on risk and priority.
-- **Consequences:** Enhanced code robustness and security. Challenges arose with implementing OAuth and federated authentication as those were new challenges for me.
+- **Decision:** Implemented multiple security, namely protecting secrets by using environment variables, using encrypted cookies and sessions, preventing cross-site request forgery with key-based verification challenges, HTTPS, preventing script injection with input sanitization and query parameterization, also including various performance and security best practices from Sonar, Red Hat, and followed general network security practices.
+- **Context:** Security is a top priority. Protecting personal information and ensuring compliance with industry standards is vital in the modern age.
+- **Alternatives Considered:** Explored various security practices. I've chosen to implement measures incrementally based on risk and priority.
+- **Consequences:** Enhanced code robustness and cybersecurity posture. Challenges arose with implementing OAuth and federated authentication but the authentication service was completed through reviewing the documentation.
 
 ### [Authentication Strategy]
 
-- **Decision:** Passwords suck - used Microsoft MSAL library for modern authentication instead.
-- **Context:** Authentication is a critical aspect of the application, and the decision aimed to ensure a both accessible and secure user authentication process.
-- **Alternatives Considered:** Explored other authentication methods: Simple password hashing, OAuth with JWT tokens and Google Authentication. Chose MSAL for its compatibility with Microsoft identity management services and cost effectiveness of Azure.
-- **Consequences:** Massively improved authentication reliability, security, accessiblity and presentation.
-- **Challenges** Library integration and adapting Microsoft's documentation to my use case were pretty challenging .
+- **Decision:** Passwords suck - utilized Microsoft MSAL library for robust modern authentication instead.
+- **Context:** Authentication is a critical aspect of the application, and the decision aimed to ensure both an accessible and secure user authentication process.
+- **Alternatives Considered:** Explored other authentication methods: Simple password hashing, OAuth with JWT tokens and Google Authentication. Choose MSAL for its compatibility with Microsoft identity management services and the cost-effectiveness of Azure.
+- **Consequences:** Massively improved authentication reliability, security, accessibility and presentation.
+- **Challenges** Library integration and adapting Microsoft's documentation to my use case were pretty challenging.
 
 ### [Database Design Decisions: Planning]
 
-- **Decision:** Ensured proper planning and normalization of the database before implementation, followed by subsequent de-normalization during development with TypeORM to facilitate maintainability.
-- **Context:** A well-structured database is vital. I focused on normalization principles like introducing junction tables like `Order_Dish` and `Role_Privilege` and all non-prime attributes depend on their primary key alone. I also removed multi-valued 'enum' dependencies like Role privileges and Ratings scores.
-- **Alternatives Considered:** Explored different database planning approaches, like NoSQL and reduced normalization for Agile optimization. Chose a partially normalized approach to ensure data integrity as well as ease of maintenance.
-- **Consequences:** The decision facilitated a structured database design, supporting future scalability and modularity and reduced most data redundancy (selective de-normalization).
+- **Decision:** Ensured proper planning and normalization of the database before implementation, followed by subsequent de-normalization during development with TypeORM to facilitate maintainability through Join tables to enable instantaneous join calculations.
+- **Context:** A well-structured database is vital. I focused on normalization principles like introducing junction tables like `Order_Dish` and `Role_Privilege` and all non-prime attributes depend on their primary key alone. I also removed multi-valued 'enum' dependencies like Role privileges and Rating scores, replacing them with extensible database entities.
+- **Alternatives Considered:** Explored different database planning approaches, like NoSQL and reduced normalization for Agile optimization. Choose a partially normalized approach to ensure data integrity, ease of maintenance, extensibility, and instantaneous joins.
+- **Consequences:** The decision facilitated a structured database design, supporting future scalability and modularity and reducing most data redundancy with selective de-normalization.
 
 ### [Database Design Decisions: Record Deletion](docs/ADRs/RecordDeletion.md)
 
 - **Decision:** Defined onDelete logic for key entity relationships in the database schema.
 - **Context:** Ensuring proper management of data integrity and cascading actions in various entity relationships.
 - **Details:** Established onDelete rules for relationships such as RESTRICT, CASCADE, and SET NULL based on specific business needs.
-- **Consequences:** Enhanced database reliability, consistency, and aligned behavior with application requirements.
+- **Consequences:** Enhanced database reliability, consistency, and aligned behaviour with application requirements.
 - **Challenges:** Balancing cascading actions and constraints for optimal data handling in complex relationships.
 
 ### [Development Approach]
 
 - **Decision:** Adopted a lean and agile development approach.
-- **Context:** Agile methodologies align with the project's dynamic nature, allowing for flexibility and adaptability to changing requirements. Examples include de-normalization of the database and the use of SwaggerUi for UI.
+- **Context:** Agile methodologies align with the project's dynamic nature, allowing for flexibility and adaptability to changing requirements. Examples include the de-normalization of the database and the use of SwaggerUi for UI.
 - **Alternatives Considered:** Considered waterfall development but I chose to develop in a lean and agile nature and to accommodate evolving project needs.
-- **Consequences:** Focused on high-level design initially, deferring low-level optimizations like defining varchar lengths and avoiding excessive componentization and object orientation. Allowed for adaptability.
+- **Consequences:** Focused on high-level design initially, deferring low-level optimizations like defining varchar lengths and avoiding excessive componentization and object orientation. Allowed for adaptability, reducing early optimization, all while allowing for further fine-tuning during the staging phase.
 
 ### [Code Quality and Maintainability]
 
 - **Decision:** Used TypeScript with custom interfaces for better maintenance and debugging.
 - **Context:** Code quality and maintainability are essential for long-term project success, and the decision to use TypeScript facilitated great coding practices that enhance readability and collaboration while maintaining the flexibility of JavaScript.
-- **Alternatives Considered:** Explored other coding practices, including the use of JavaScript and less strict typing and a PropType linting approach. Chose TypeScript for its static/passive typing benefits and improved developer experience.
+- **Alternatives Considered:** Explored other coding practices, including the use of native JavaScript's less loose typing and with a PropType approach. I decided on TypeScript for its static/passive typing benefits which reduce run-time bugs and streamline the developer experience.
 - **Consequences:** Ensured a maintainable codebase, avoiding the use of 'any' type variables. The decision supports collaboration and I'm sure eliminated a few runtime errors ahead of time.
 
 ## Installation
@@ -125,9 +125,12 @@ GRAPH_API_ENDPOINT=''
 Access the api directly using the host URL using the `HOST_URL` on the correct `NODE_PORT`
 Access the API using the provided Swagger UI on `http://<<HOST_URL>>:<<NODE_PORT>>/api/docs`
 
+# Further Context
 
-# Assignment Brief
+## Disclaimer
+`This project was completed through CodeSubmit.io as part of an open-ended hiring test for an intermediate-senior software developer position at a leading international retailer. Therefore, the initial development history is stored on CodeSubmit.io and unfortunately no longer accessible. For clarity, I've included the assessment briefing below.`
 
+##  Assignment Brief
 
 Your assignment is to implement a REST API for a restaurant.
 
