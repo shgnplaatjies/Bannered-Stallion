@@ -1,5 +1,5 @@
 
-# The Prancing Pony
+# The Bannered Stallion
 
 A RESTful API for a multi-vendor restaurant.
 
