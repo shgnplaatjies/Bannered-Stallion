@@ -84,7 +84,7 @@ Some significant architectural decisions were made during the project.
 
 ## Installation
 
-Guidelines for installing and setting up The Prancing Pony.
+Guidelines for installation and setup.
 
 ```
 # Using npm
